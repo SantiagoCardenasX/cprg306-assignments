@@ -8,6 +8,7 @@ export default function Page() {
         <p><Link href={"/week-3"}>Click to go to week 3</Link></p>
         <p><Link href={"/week-4"}>Click to go to week 4</Link></p>
         <p><Link href={"/week-5"}>Click to go to week 5</Link></p>
+        <p><Link href={"/week-6"}>Click to go to week 6</Link></p>
       </main>
     );
   }
