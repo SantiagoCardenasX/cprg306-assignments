@@ -27,11 +27,13 @@ export default function MealIdeas({ ingredient }) {
   }, [ingredient]);
 
   return (
-    <div>
-      <h2>Meal Ideas</h2>
-      <ul>
+    <div className="p-2 w-full mb-2 mt-1">
+      <p className="text-lg font-bold mb-3">Meal Ideas: (Click to see ingredients)</p>
+      <ul className=" list-inside mt-6">
         {mealIdeas.map((meal) => (
-          <li key={meal.idMeal}>{meal.strMeal}</li>
+          <li key={meal.idMeal} className="mb-3 bg-[#444444] p-3 rounded-lg hover:bg-orange-800 cursor-pointer">
+            {meal.strMeal}
+          </li>
         ))}
       </ul>
     </div>

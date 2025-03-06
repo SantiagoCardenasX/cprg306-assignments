@@ -5,10 +5,10 @@ export default function Item({ name, quantity, category, onSelect }) {
   };
 
   return (
-    <div className="flex justify-start">
+    <div className="flex justify-start cursor-pointer">
       <li
         onClick={handleClick}
-        className="bg-[#444444] p-3 m-3 max-w-[500px] rounded-md w-full"
+        className="bg-[#444444] p-3 m-3 max-w-[500px] rounded-lg w-full hover:bg-orange-800"
       >
         <h3 className="text-2xl font-bold">{name}</h3>
         <p className="text-lg">

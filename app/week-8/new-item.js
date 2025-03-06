@@ -38,7 +38,7 @@ export default function NewItem({ onAddItem }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col md:flex-row items-center justify-center w-full bg-slate-600 p-4 md:p-6 rounded-lg shadow-lg gap-4"
+      className="flex flex-col md:flex-row items-center justify-center w-full bg-[#444444] p-4 md:p-6 rounded-lg shadow-lg gap-4"
     >
       <div className="flex flex-col mb-4 gap-2 flex-grow">
         <label htmlFor="name" className="text-lg font-bold text-white">
@@ -50,7 +50,7 @@ export default function NewItem({ onAddItem }) {
           id="name"
           value={name}
           onChange={(event) => setName(event.target.value)}
-          className="border border-gray-400 p-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 h-10"
+          className="border border-gray-400 p-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-orange-500 h-10"
         />
       </div>
 
@@ -62,7 +62,7 @@ export default function NewItem({ onAddItem }) {
           id="category"
           value={category}
           onChange={(event) => setCategory(event.target.value)}
-          className="border border-gray-400 p-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 h-10"
+          className="border border-gray-400 p-2 rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-orange-500 h-10"
         >
           <option value="Produce">Produce</option>
           <option value="Dairy">Dairy</option>
@@ -87,7 +87,7 @@ export default function NewItem({ onAddItem }) {
             className={`w-10 h-10 rounded-l-lg text-white font-bold ${
               quantity <= 1
                 ? "bg-gray-400"
-                : "bg-blue-500 hover:bg-blue-700 active:bg-blue-800"
+                : "bg-orange-500 hover:bg-orange-700 active:bg-orange-800"
             }`}
             disabled={quantity <= 1}
           >
@@ -105,7 +105,7 @@ export default function NewItem({ onAddItem }) {
             className={`w-10 h-10 rounded-r-lg text-white font-bold ${
               quantity >= 20
                 ? "bg-gray-400"
-                : "bg-blue-500 hover:bg-blue-700 active:bg-blue-800"
+                : "bg-orange-500 hover:bg-orange-700 active:bg-orange-800"
             }`}
             disabled={quantity >= 20}
           >
@@ -114,12 +114,12 @@ export default function NewItem({ onAddItem }) {
         </div>
       </div>
 
-      <div className="flex flex-col mb-4 gap-2 flex-grow">
+      <div className="flex flex-col mb-4 flex-grow gap-3">
         <label className="text-white invisible">Submit</label>
         <div className="flex flex-col md:flex-row md:items-center gap-2 flex-grow">
           <button
             type="submit"
-            className="bg-blue-500 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+            className="bg-orange-500 hover:bg-orange-700 active:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 flex-grow"
           >
             Submit
           </button>

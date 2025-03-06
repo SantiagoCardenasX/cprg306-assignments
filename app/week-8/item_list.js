@@ -45,22 +45,22 @@ export default function ItemList({ items, onItemSelect }) {
 
   return (
     <main>
-      <div className="flex items-center gap-3 justify-start" style={{ minWidth: '80%' }}>
+      <div className="flex items-center gap-3 justify-start">
         <p className="text-lg font-bold m-3">Group by:</p>
         <button
-          className={`px-3 py-1 rounded-md ${groupBy === "name" ? "bg-orange-600" : "bg-orange-800"}`}
+          className={`px-3 py-1 rounded-md ${groupBy === "name" ? "bg-orange-600" : "bg-orange-800 hover:bg-orange-700"}`}
           onClick={() => setGroupBy("name")}
         >
           Name
         </button>
         <button
-          className={`px-3 py-1 rounded-md ${groupBy === "category" ? "bg-orange-600" : "bg-orange-800"}`}
+          className={`px-3 py-1 rounded-md ${groupBy === "category" ? "bg-orange-600" : "bg-orange-800 hover:bg-orange-700"}`}
           onClick={() => setGroupBy("category")}
         >
           Category
         </button>
         <button
-          className={`px-3 py-1 rounded-md ${groupBy === "groupedCategory" ? "bg-orange-600" : "bg-orange-800"}`}
+          className={`px-3 py-1 rounded-md ${groupBy === "groupedCategory" ? "bg-orange-600" : "bg-orange-800 hover:bg-orange-700"}`}
           onClick={() => setGroupBy("groupedCategory")}
         >
           Grouped Category
