@@ -87,7 +87,7 @@ export default function NewItem({ onAddItem }) {
             className={`w-10 h-10 rounded-l-lg text-white font-bold ${
               quantity <= 1
                 ? "bg-gray-400"
-                : "bg-orange-500 hover:bg-orange-700 active:bg-orange-800"
+                : "bg-orange-600 hover:bg-orange-700 active:bg-orange-800"
             }`}
             disabled={quantity <= 1}
           >
@@ -105,7 +105,7 @@ export default function NewItem({ onAddItem }) {
             className={`w-10 h-10 rounded-r-lg text-white font-bold ${
               quantity >= 20
                 ? "bg-gray-400"
-                : "bg-orange-500 hover:bg-orange-700 active:bg-orange-800"
+                : "bg-orange-600 hover:bg-orange-700 active:bg-orange-800"
             }`}
             disabled={quantity >= 20}
           >
@@ -119,7 +119,7 @@ export default function NewItem({ onAddItem }) {
         <div className="flex flex-col md:flex-row md:items-center gap-2 flex-grow">
           <button
             type="submit"
-            className="bg-orange-500 hover:bg-orange-700 active:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 flex-grow"
+            className="bg-orange-600 hover:bg-orange-700 active:bg-orange-800 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 flex-grow"
           >
             Submit
           </button>

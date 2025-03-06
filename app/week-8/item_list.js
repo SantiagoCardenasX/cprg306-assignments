@@ -22,12 +22,12 @@ export default function ItemList({ items, onItemSelect }) {
   useEffect(() => {
     if (groupBy === "name") {
       setSortedItems(
-        [...items].sort((a, b) => a.name.localeCompare(b.name))
+        [...items].sort((a, b) => String(a.name).localeCompare(String(b.name)))
       );
       setGroupedItems({});
     } else if (groupBy === "category") {
       setSortedItems(
-        [...items].sort((a, b) => a.category.localeCompare(b.category))
+        [...items].sort((a, b) => String(a.category).localeCompare(String(b.category)))
       );
       setGroupedItems({});
     } else if (groupBy === "groupedCategory") {
@@ -35,7 +35,7 @@ export default function ItemList({ items, onItemSelect }) {
       // Sort items within each category
       Object.keys(arrayGroupedByCategory).forEach((category) => {
         arrayGroupedByCategory[category].sort((a, b) =>
-          a.name.localeCompare(b.name)
+          String(a.name).localeCompare(String(b.name))
         );
       });
       setGroupedItems(arrayGroupedByCategory);
@@ -69,7 +69,7 @@ export default function ItemList({ items, onItemSelect }) {
       <ul>
         {groupBy === "groupedCategory"
           ? Object.entries(groupedItems)
-              .sort(([a], [b]) => a.localeCompare(b)) // Sort categories
+              .sort(([a], [b]) => String(a).localeCompare(String(b))) // Sort categories
               .map(([category, items], index) => (
                 <li key={index}>
                   <h2 className="text-xl font-bold m-3 capitalize">{category}</h2>
@@ -80,7 +80,7 @@ export default function ItemList({ items, onItemSelect }) {
                         name={item.name}
                         quantity={item.quantity}
                         category={item.category}
-                        onSelect={() => onItemSelect(item)} // Trigger parent onItemSelect
+                        onSelect={() => onItemSelect(item.name)} // Trigger parent onItemSelect
                       />
                     ))}
                   </ul>

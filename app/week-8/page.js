@@ -23,6 +23,7 @@ export default function Page() {
     // Clean the name by removing size info and trimming spaces
     const cleanedName = emojiRemoved.split(",")[0].trim();
     setSelectedItemName(cleanedName); // Set the cleaned item name to selectedItemName
+    console.log("Selected Item Name:", cleanedName); // Log the selected item name
   };
 
   return (
