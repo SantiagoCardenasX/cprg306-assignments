@@ -58,17 +58,17 @@ const UserAuthComponent = () => {
         </p>
         <p className="text-center text-gray-800 mb-6">{user.email}</p>
         {/* Button to sign out */}
-        <div className="space-y-6">
-          <button
-            onClick={handleSignOut}
-            className="w-full px-6 py-3 bg-gray-800 text-white rounded-full text-lg font-semibold hover:bg-gray-700 transition duration-300"
-          >
-            Sign out
-          </button>
+        <button
+          onClick={handleSignOut}
+          className="w-full px-6 py-3 mb-6 bg-gray-800 text-white rounded-full text-lg font-semibold hover:bg-gray-700 transition duration-300"
+        >
+          Sign out
+        </button>
+        <Link href="/week-9/shopping-list">
           <button className="w-full px-6 py-3 bg-gray-800 text-white rounded-full text-lg font-semibold hover:bg-gray-700 transition duration-300">
-            <Link href="/week-9/shopping-list">Go to Shopping List</Link>
+            Go to Shopping List
           </button>
-        </div>
+        </Link>
       </div>
     </div>
   );
