@@ -11,6 +11,7 @@ export default function Page() {
         <p><Link href={"/week-6"}>Click to go to week 6</Link></p>
         <p><Link href={"/week-7"}>Click to go to week 7</Link></p>
         <p><Link href={"/week-8"}>Click to go to week 8</Link></p>
+        <p><Link href={"/week-9"}>Click to go to week 9</Link></p>
       </main>
     );
   }
