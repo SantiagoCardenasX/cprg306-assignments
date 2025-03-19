@@ -1,5 +1,12 @@
 import { db } from "../_utils/firebase";
-import { collection, getDocs, addDoc, query } from "firebase/firestore";
+import {
+  doc,
+  collection,
+  getDocs,
+  addDoc,
+  query,
+  deleteDoc,
+} from "firebase/firestore";
 
 export const getItems = async (userId) => {
   // Reference to the 'items' subcollection of the specific user's document
@@ -21,13 +28,20 @@ export const getItems = async (userId) => {
 };
 
 export const addItem = async (userId, item) => {
-    // Reference to the 'items' subcollection of the specific user's document
-    const itemsCollection = collection(db, `users/${userId}/items`);
-    
-    // Add the new item to the 'items' subcollection
-    const docRef = await addDoc(itemsCollection, item);
-    
-    // Return the document ID of the newly created item
-    return docRef.id;
-  };
-  
+  // Reference to the 'items' subcollection of the specific user's document
+  const itemsCollection = collection(db, `users/${userId}/items`);
+
+  // Add the new item to the 'items' subcollection
+  const docRef = await addDoc(itemsCollection, item);
+
+  // Return the document ID of the newly created item
+  return docRef.id;
+};
+
+export const deleteItem = async (userId, itemId) => {
+  // Reference to the specific item document in the 'items' subcollection
+  const itemDoc = doc(db, `users/${userId}/items/${itemId}`);
+
+  // Delete the item document
+  await deleteDoc(itemDoc);
+};

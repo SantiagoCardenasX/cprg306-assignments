@@ -3,7 +3,7 @@
 import Item from "./item";
 import { useState, useEffect } from "react";
 
-export default function ItemList({ items, onItemSelect }) {
+export default function ItemList({ items, onItemSelect, onDelete }) {
   const [groupBy, setGroupBy] = useState("name");
   const [sortedItems, setSortedItems] = useState([...items]);
   const [groupedItems, setGroupedItems] = useState({});
@@ -27,7 +27,9 @@ export default function ItemList({ items, onItemSelect }) {
       setGroupedItems({});
     } else if (groupBy === "category") {
       setSortedItems(
-        [...items].sort((a, b) => String(a.category).localeCompare(String(b.category)))
+        [...items].sort((a, b) =>
+          String(a.category).localeCompare(String(b.category))
+        )
       );
       setGroupedItems({});
     } else if (groupBy === "groupedCategory") {
@@ -48,19 +50,31 @@ export default function ItemList({ items, onItemSelect }) {
       <div className="flex items-center gap-3 justify-start">
         <p className="text-lg font-bold m-3">Group by:</p>
         <button
-          className={`px-3 py-1 rounded-md ${groupBy === "name" ? "bg-orange-600" : "bg-orange-800 hover:bg-orange-700"}`}
+          className={`px-3 py-1 rounded-md ${
+            groupBy === "name"
+              ? "bg-orange-600"
+              : "bg-orange-800 hover:bg-orange-700"
+          }`}
           onClick={() => setGroupBy("name")}
         >
           Name
         </button>
         <button
-          className={`px-3 py-1 rounded-md ${groupBy === "category" ? "bg-orange-600" : "bg-orange-800 hover:bg-orange-700"}`}
+          className={`px-3 py-1 rounded-md ${
+            groupBy === "category"
+              ? "bg-orange-600"
+              : "bg-orange-800 hover:bg-orange-700"
+          }`}
           onClick={() => setGroupBy("category")}
         >
           Category
         </button>
         <button
-          className={`px-3 py-1 rounded-md ${groupBy === "groupedCategory" ? "bg-orange-600" : "bg-orange-800 hover:bg-orange-700"}`}
+          className={`px-3 py-1 rounded-md ${
+            groupBy === "groupedCategory"
+              ? "bg-orange-600"
+              : "bg-orange-800 hover:bg-orange-700"
+          }`}
           onClick={() => setGroupBy("groupedCategory")}
         >
           Grouped Category
@@ -72,15 +86,19 @@ export default function ItemList({ items, onItemSelect }) {
               .sort(([a], [b]) => String(a).localeCompare(String(b))) // Sort categories
               .map(([category, items], index) => (
                 <li key={index}>
-                  <h2 className="text-xl font-bold m-3 capitalize">{category}</h2>
+                  <h2 className="text-xl font-bold m-3 capitalize">
+                    {category}
+                  </h2>
                   <ul>
                     {items.map((item, subIndex) => (
                       <Item
                         key={subIndex}
+                        id={item.id}
                         name={item.name}
                         quantity={item.quantity}
                         category={item.category}
                         onSelect={() => onItemSelect(item.name)} // Trigger parent onItemSelect
+                        onDelete={() => onDelete(item.id)} // Trigger parent onDelete
                       />
                     ))}
                   </ul>
@@ -89,10 +107,12 @@ export default function ItemList({ items, onItemSelect }) {
           : sortedItems.map((item, index) => (
               <Item
                 key={index}
+                id={item.id}
                 name={item.name}
                 quantity={item.quantity}
                 category={item.category}
                 onSelect={() => onItemSelect(item.name)} // Trigger parent onItemSelect
+                onDelete={() => onDelete(item.id)} // Trigger parent onDelete
               />
             ))}
       </ul>
