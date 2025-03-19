@@ -3,9 +3,9 @@
 import { useUserAuth } from "../_utils/auth-context"; // Import your authentication hook
 import ItemList from "./item_list";
 import NewItem from "./new-item";
-import ItemsData from "./items.json";
+import { getItems, addItem } from "../_services/shopping-list-service"; // Import the service functions
 import MealIdeas from "./meal-ideas";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useRouter } from "next/navigation"; // Import Next.js router for redirection
 
 export default function Page() {
@@ -13,7 +13,13 @@ export default function Page() {
   const { user } = useUserAuth(); // Assuming the hook provides a user object
   const router = useRouter(); // Initialize router for redirection
   const [isLoading, setIsLoading] = useState(true); // Loading state to handle async check
-
+  
+  const loadItems = async () => {
+    // Call the getItems function from the shopping-list-service
+    const items = await getItems(user.uid);
+    setItems(items);
+  }
+  
   useEffect(() => {
     // If user is not logged in, redirect to landing page
     if (user === null) {
@@ -23,8 +29,14 @@ export default function Page() {
     }
   }, [user, router]);
 
+  useEffect(() => {
+    if (user) {
+      loadItems(); // Load the items from the database
+    }
+  }, [user]);
+
   // State for the shopping list and selected item
-  const [items, setItems] = useState([...ItemsData]);
+  const [items, setItems] = useState([]);
   const [selectedItemName, setSelectedItemName] = useState(null);
 
   if (isLoading) {
@@ -33,7 +45,9 @@ export default function Page() {
 
   // Handle adding a new item to the shopping list
   const handleAddItem = (item) => {
-    setItems([...items, item]);
+    const newItemId = addItem(user.uid, item); // Add the item to the database
+    const newItemWithId = { id: newItemId, ...item }; // Combine the item with the new ID
+    setItems([...items, newItemWithId]); // Update the items state with the new item
   };
 
   // Handle selecting an item from the shopping list
@@ -45,6 +59,7 @@ export default function Page() {
     setSelectedItemName(cleanedName); // Set the cleaned item name to selectedItemName
     console.log("Selected Item Name:", cleanedName); // Log the selected item name
   };
+
 
   return (
     <main className="flex flex-col items-center justify-center min-h-screen mx-auto max-w-6xl">

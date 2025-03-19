@@ -22,7 +22,7 @@ export const getItems = async (userId) => {
 
 export const addItem = async (userId, item) => {
     // Reference to the 'items' subcollection of the specific user's document
-    const itemsCollection = collection(doc(db, `users/${userId}/items`));
+    const itemsCollection = collection(db, `users/${userId}/items`);
     
     // Add the new item to the 'items' subcollection
     const docRef = await addDoc(itemsCollection, item);
